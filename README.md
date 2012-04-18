@@ -14,4 +14,4 @@ Notes:
 
  * Includes an example Xcode project.
  * Uses Cocos2d-iPhone version 1.0.1
- * Project is non-ARC
+ * Project is purposefully non-ARC
