@@ -1,7 +1,7 @@
 SpriteDragger
 =============
 
-A simple Cocos2D iPhone example project showing you how to drag a sprite around the screen.
+A clean, minimal Cocos2D iPhone example project showing you how to drag a sprite around the screen.
 
 Topics covered in the source code:
 
@@ -9,3 +9,9 @@ Topics covered in the source code:
  * Receiving ccTouch events from Cocos2D and translating them into dragging a CCSprite
  * Animating the sprite via runAction
  * CCDirector, CCScene, CCSprite, CCColorLayer, CCSequence, CCScaleBy
+
+Notes:
+
+ * Includes an example Xcode project.
+ * Uses Cocos2d-iPhone version 1.0.1
+ * Project is non-ARC
