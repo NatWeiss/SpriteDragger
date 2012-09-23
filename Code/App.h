@@ -3,10 +3,10 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-@interface App : NSObject <UIApplicationDelegate>
+@interface App : NSObject <UIApplicationDelegate, CCDirectorDelegate>
 	{
 		UIWindow* window;
-		EAGLView* glView;
+		UINavigationController* navController;
 	}
 	
 	-(void) setupGraphics;

@@ -22,31 +22,36 @@
 		// create the window
 		window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
-		// must be called before any othe call to the director
-		[CCDirector setDirectorType:kCCDirectorTypeDisplayLink];
-
 		// set cocos2d director options
 		CCDirector* director = [CCDirector sharedDirector];
 		[director setAnimationInterval:(1.0f / 60.0f)]; // how many frames per second (ideally)
 		
 		// manually create the embedded (apple) graphics library view
-		glView = [[EAGLView alloc]
+		CCGLView* __glView = [[CCGLView alloc]
 			initWithFrame:[window bounds]
-			pixelFormat:kEAGLColorFormatRGBA8 // we conserve video memory here
-			depthFormat:GL_DEPTH_COMPONENT24_OES // we need a depth buffer for better z ordering
+			pixelFormat:kEAGLColorFormatRGBA8
+			depthFormat:GL_DEPTH_COMPONENT24_OES
 			preserveBackbuffer:NO
 			sharegroup:nil
-			multiSampling:NO // turning on multiSampling seems to slow things down...
+			multiSampling:NO
 			numberOfSamples:0];
 
-		// allow multiple touches
-		[glView setMultipleTouchEnabled:YES];
-
 		// attach the openglView to the director
-		[director setOpenGLView:glView];
-		
-		// make the OpenGLView a child of the main window
-		[window addSubview:glView];
+		[director setView:__glView];
+		[director setDelegate:self];
+		director.wantsFullScreenLayout = YES;
+
+		// allow multiple touches
+		[__glView setMultipleTouchEnabled:YES];
+
+		// use RootViewController manage EAGLView
+		navController = [[UINavigationController alloc] initWithRootViewController:director];
+		navController.navigationBarHidden = YES;
+
+		// set root view controller seems to work fine on all ios versions,
+		// except on ios6 it doesn't send shouldAutorotate...
+		[window setRootViewController:navController];
+		//[window addSubview:navController.view];
 
 		// make main window visible
 		[window makeKeyAndVisible];
@@ -56,7 +61,7 @@
 	{
 		// release our window
 		[window release];
-		[glView release];
+		[navController release];
 		
 		// remember to [super dealloc]
 		[super dealloc];
