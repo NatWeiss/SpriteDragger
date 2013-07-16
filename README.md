@@ -12,6 +12,6 @@ Topics covered in the source code:
 
 Notes:
 
- * Includes an example Xcode project.
- * Uses Cocos2d-iPhone version 2.0.0
+ * Includes an example Xcode project
+ * Uses Cocos2d-iPhone version 2.1
  * Project is purposefully non-ARC

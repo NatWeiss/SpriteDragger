@@ -20,7 +20,7 @@
 			[self addChild:sprite z:2];
 			
 			// enable touches so we can drag
-			self.isTouchEnabled = YES;
+			[self setTouchEnabled:YES];
 		}
 		return self;
 	}
@@ -28,7 +28,7 @@
 	-(void) dealloc
 	{
 		// unset this so we unregister with the touch dispatcher
-		self.isTouchEnabled = NO;
+		[self setTouchEnabled:NO];
 		
 		// release our sprite and layer so that it gets dealloced
 		[sprite release];
